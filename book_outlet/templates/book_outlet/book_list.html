@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{%load static %}
+
+{%block style %}
+  <link rel="stylesheet" href="{%static 'book_outlet/book-style.css'%}">
+{%endblock%}
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% for book in books %}
+    <div class="col-md-4">
+      <div class="book-card">
+        <div class="book-image">
+          <img src="{{ book.image.url }}" alt="{{ book.title }}">
+          <div class="book-details">
+            <h5 class="book-title">{{ book.title }}</h5>
+            <p class="book-info">Rating: {{ book.rating }}</p>
+            <p class="book-info">Author: {{ book.author }}</p>
+            <p class="book-info">Bestselling: {% if book.is_bestselling %}Yes{% else %}No{% endif %}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
